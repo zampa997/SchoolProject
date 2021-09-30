@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ef_scaffold.Entities;
+using Microsoft.Extensions.Logging;
 
 #nullable disable
 
@@ -37,9 +38,10 @@ namespace ef_scaffold.EfData
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server = localhost; User Id=sa; Password=1Secure*Password; Database = scuola");
+            {               
+                optionsBuilder.UseSqlServer("server=localhost; database=Education; User Id=sa; Password=1Secure*Password;")
+               .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name, DbLoggerCategory.Database.Transaction.Name },
+                LogLevel.Information).EnableSensitiveDataLogging();
             }
         }
 
