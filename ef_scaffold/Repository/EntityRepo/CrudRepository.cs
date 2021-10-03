@@ -1,4 +1,5 @@
-﻿using ef_scaffold.EfData;
+﻿using ef_scaffold;
+using ef_scaffold.EfData;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
-    public class CrudRepository<T, K> : ICrudRepository<T, K> where T : class
+    public class CrudRepository<T, K> : IRepository<T, K> where T : class
     {
         private readonly SchoolContext ctx;
         private DbSet<T> entities;
@@ -51,6 +52,11 @@ namespace DataLayer.Repositories
         public IEnumerable<T> GetAll()
         {
             return entities.AsEnumerable();
+        }
+
+        public IEnumerable<T> GetEditionsByIdCourse(K idCorso)
+        {
+            return null;
         }
 
         public void Update(T newElement)

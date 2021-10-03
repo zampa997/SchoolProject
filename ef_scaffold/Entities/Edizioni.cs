@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NodaTime;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -13,20 +14,41 @@ namespace ef_scaffold.Entities
             Modulos = new HashSet<Modulo>();
         }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string CodiceEdizione { get; set; }
-        public DateTime DataInizio { get; set; }
-        public DateTime DataFine { get; set; }
+        public LocalDate DataInizio { get; set; }
+        public LocalDate DataFine { get; set; }
         public decimal PrezzoFinale { get; set; }
-        public int NumeroStudentiMassimo { get; set; }
-        public int IdAula { get; set; }
-        public int IdCorso { get; set; }
-        public int? IdFinanziatore { get; set; }
+        public long NumeroStudentiMassimo { get; set; }
+        public long IdAula { get; set; }
+        public long IdCorso { get; set; }
+        public long? IdFinanziatore { get; set; }
 
         public virtual Aula IdAulaNavigation { get; set; }
         public virtual Corso IdCorsoNavigation { get; set; }
         public virtual Finanziatore IdFinanziatoreNavigation { get; set; }
         public virtual ICollection<Iscrizione> Iscriziones { get; set; }
         public virtual ICollection<Modulo> Modulos { get; set; }
+
+        public Edizioni(long id, string codice, long idCorso, LocalDate start, LocalDate end,
+         int numStudents, decimal realPrice, long idAula, long idFinanziatore)
+        {
+            this.Id = id;
+            this.CodiceEdizione = codice;
+            this.DataInizio = start;
+            this.DataFine = end;
+            this.NumeroStudentiMassimo = numStudents;
+            this.PrezzoFinale = realPrice;            
+            this.IdAula = idAula;
+            this.IdFinanziatore = idFinanziatore;
+            this.IdCorso = idCorso;
+        }
+        public override string ToString()
+        {
+            return $@"Id:{Id}
+                    Titolo corso:{IdCorsoNavigation.Titolo}
+                    Data inizio:{DataInizio}
+                    Prezzo finale:{PrezzoFinale}";
+        }
     }
 }
