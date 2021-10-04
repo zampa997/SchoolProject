@@ -21,7 +21,7 @@ namespace ef_scaffold.Entities
         public long IdLivello { get; set; }
         public long IdProgetto { get; set; }
         public long IdCategoria { get; set; }       
-        public virtual Categorium IdCategoriaNavigation { get; set; }
+        public virtual Categoria IdCategoriaNavigation { get; set; }
         public virtual Livello IdLivelloNavigation { get; set; }
         public virtual Progetto IdProgettoNavigation { get; set; }
         public virtual ICollection<Edizioni> Edizionis { get; set; }
@@ -39,7 +39,7 @@ namespace ef_scaffold.Entities
             Descrizione = descrizione;
         }
         public Corso(long id, string titolo, int ammontareOre, decimal costoDiRiferimento,
-           Livello livello, Progetto progetto, Categorium categioria, string descrizione)
+           Livello livello, Progetto progetto, Categoria categioria, string descrizione)
         {
             Id = id;
             Titolo = titolo;

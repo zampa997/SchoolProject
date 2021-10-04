@@ -21,7 +21,8 @@ namespace ef_scaffold
                                     b per inserire un edizione di un corso
                                     r per creare un report
                                     d per cambiare memoria in uso
-                                    q per terminare il programma";       
+                                    q per terminare il programma";
+        const string BASE_PROMPT = "=>";
         public UserInterface(Service s)
         {
             Service = s;
