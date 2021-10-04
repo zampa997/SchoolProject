@@ -3,6 +3,7 @@ using ef_scaffold.EfData;
 using ef_scaffold.Entities;
 using ef_scaffold.Repository.ADORepo;
 using ef_scaffold.Repository.InMemortRepository;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,25 @@ using System.Threading.Tasks;
 
 namespace ef_scaffold
 {
-    public class Service // => Service generale da chiedere a Riccardo
+    public class Service // => Service unitario per tipo di memoria.
+                         // vuole il costruttore con i suoi Repo da iniettare.
     {
+        /*
+            public IRepository<Corso,long> RepoCorsi {set; get;}
+            ... {set; get;}
+            ... {set; get;}
+            ...
+
+            public ServiceADO(IRepository<Corso,long> repoCorsi, ..., ..., ...)
+            {
+                RepoCorsi = repoCorsi;
+                ...;
+                ...;
+                ...
+            }
+         */
         static SchoolContext ctx = new SchoolContext();
+        //static SqlConnection conn = new SqlConnection(CONNECTION_STRING); => DA PASSARE AI REPO DI ADO
         IRepository<Corso, long> repoCorsi = new MemoryCourseRepository();//new CrudRepository<Corso, long>(ctx);
         IRepository<Edizioni, long> repoEdizioni = new MemoryEditionRepository(); //new CrudRepository<Edizioni, long>(ctx);
 
@@ -27,9 +44,9 @@ namespace ef_scaffold
         public void ChangeRepo(long name)
         {            
             switch (name)
-            {
+            {             
                 case 1:
-                    repoCorsi = new CrudRepository<Corso, long>(ctx);
+                    repoCorsi = new CrudRepository<Corso, long>(ctx);                  
                     repoEdizioni = new CrudRepository<Edizioni, long>(ctx);
                     repoCategoria = new CrudRepository<Categoria, long>(ctx);
                     repoLivello = new CrudRepository<Livello, long>(ctx);
@@ -61,10 +78,16 @@ namespace ef_scaffold
             };
         }
 
+        //i controlli agli ID dentro gli oggetti andranno fatti qui
+        //Il service userà il metodo SaveChanges o Commit sulla connessione
+        //Il service creerà la connessione che passerà ai repository
+
         #region Corso
         public void CreateCourse(Corso c)
         {
             repoCorsi.Create(c);
+            //ctx.SaveChanges() : null;
+            //conn.Commit : RollBack;
         }
         public IEnumerable<Corso> GetAllCourses()
         {
@@ -110,8 +133,6 @@ namespace ef_scaffold
             return repoEdizioni.GetEditionsByIdCourse(id);
         }
         #endregion
-
-
 
         //#region Utilities
         //public static bool ProjectExist(long id)

@@ -12,6 +12,7 @@ namespace ef_scaffold
     public class UserInterface
     {
         public Service Service { get; set; }
+        //public IService Service = new ServiceADO(); => QUI CAMBIERA SERVICE NON REPOSITORY
         const string DIVISORE = "==============================================================";
         const string MAIN_MENU = @"Operazioni disponibili, inserisci:
                                     a per vedere tutti i corsi
@@ -20,8 +21,7 @@ namespace ef_scaffold
                                     b per inserire un edizione di un corso
                                     r per creare un report
                                     d per cambiare memoria in uso
-                                    q per terminare il programma";
-        const string BASE_PROMPT = "=>";
+                                    q per terminare il programma";       
         public UserInterface(Service s)
         {
             Service = s;
@@ -81,6 +81,9 @@ namespace ef_scaffold
                                     =>");
                 x = int.Parse(name);               
             } while (x < 0 & x > 4);
+            //case 1: Service = new ServiceADO(...);
+            //case 2: Service = new ServiceEF(...);
+            //case 3: Service = new ServiceMemory(...);
             Service.ChangeRepo(x);
         }
 
@@ -163,7 +166,7 @@ namespace ef_scaffold
             }
         }
 
-
+        #region Utilities
         private LocalDate ReadLocalDate(string prompt)
         {
             bool success = false;
@@ -248,6 +251,8 @@ namespace ef_scaffold
             while (!isNumber);
             return num;
         }
+        #endregion
+
     }
 }
 
