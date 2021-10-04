@@ -19,6 +19,7 @@ namespace ef_scaffold
                                     e per cercare le edizioni di un corso
                                     b per inserire un edizione di un corso
                                     r per creare un report
+                                    d per cambiare memoria in uso
                                     q per terminare il programma";
         const string BASE_PROMPT = "=>";
         public UserInterface(Service s)
@@ -54,6 +55,9 @@ namespace ef_scaffold
                     case 'e':
                         ShowCourseEditionsByCourse();
                         break;
+                    case 'd':
+                        ChangeRepo();
+                        break;
                     case 'q':
                         quit = true;
                         break;
@@ -63,6 +67,21 @@ namespace ef_scaffold
                 }
             }
             while (!quit);
+        }
+
+        private void ChangeRepo()
+        {
+            int x;
+            do
+            {
+                string name = ReadString(@"Cambio memoria, inserire
+                                    1. Database tramite entity framework
+                                    2. Database tramite ADO
+                                    3. Memoria interna della macchina
+                                    =>");
+                x = int.Parse(name);               
+            } while (x < 0 & x > 4);
+            Service.ChangeRepo(x);
         }
 
         private void ShowCourseEditionsByCourse()

@@ -17,10 +17,9 @@ namespace ef_scaffold
         IRepository<Corso, long> repoCorsi = new MemoryCourseRepository();//new CrudRepository<Corso, long>(ctx);
         IRepository<Edizioni, long> repoEdizioni = new MemoryEditionRepository(); //new CrudRepository<Edizioni, long>(ctx);
 
-        public void ChangeRepo(string name)
-        {
-            int scelta = int.Parse(name);
-            switch (scelta)
+        public void ChangeRepo(long name)
+        {            
+            switch (name)
             {
                 case 1:
                     repoCorsi = new CrudRepository<Corso, long>(ctx);
