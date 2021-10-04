@@ -20,8 +20,8 @@ namespace ef_scaffold.EfData
         }
 
         public virtual DbSet<Aula> Aulas { get; set; }
-        public virtual DbSet<Aziendum> Azienda { get; set; }
-        public virtual DbSet<Categorium> Categoria { get; set; }
+        public virtual DbSet<Azienda> Azienda { get; set; }
+        public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Competenza> Competenzas { get; set; }
         public virtual DbSet<Corso> Corsos { get; set; }
         public virtual DbSet<Edizioni> Edizionis { get; set; }
@@ -69,7 +69,7 @@ namespace ef_scaffold.EfData
                 entity.Property(e => e.Proiettore).HasColumnName("proiettore");
             });
 
-            modelBuilder.Entity<Aziendum>(entity =>
+            modelBuilder.Entity<Azienda>(entity =>
             {
                 entity.ToTable("azienda");
 
@@ -115,7 +115,7 @@ namespace ef_scaffold.EfData
                     .HasColumnName("telefono");
             });
 
-            modelBuilder.Entity<Categorium>(entity =>
+            modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.ToTable("categoria");
 

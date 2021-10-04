@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace ef_scaffold.Entities
 {
-    public partial class Categorium
+    public partial class Categoria
     {
-        public Categorium()
+        public Categoria()
         {
             Corsos = new HashSet<Corso>();
             Skills = new HashSet<Skill>();

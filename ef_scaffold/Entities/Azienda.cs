@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace ef_scaffold.Entities
 {
-    public partial class Aziendum
+    public partial class Azienda
     {
-        public Aziendum()
+        public Azienda()
         {
             Personas = new HashSet<Persona>();
             Progettos = new HashSet<Progetto>();

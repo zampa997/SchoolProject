@@ -16,7 +16,7 @@ namespace ef_scaffold.Entities
         public string Descrizione { get; set; }
         public int IdAzienda { get; set; }
 
-        public virtual Aziendum IdAziendaNavigation { get; set; }
+        public virtual Azienda IdAziendaNavigation { get; set; }
         public virtual ICollection<Corso> Corsos { get; set; }
     }
 }

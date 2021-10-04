@@ -17,6 +17,13 @@ namespace ef_scaffold
         IRepository<Corso, long> repoCorsi = new MemoryCourseRepository();//new CrudRepository<Corso, long>(ctx);
         IRepository<Edizioni, long> repoEdizioni = new MemoryEditionRepository(); //new CrudRepository<Edizioni, long>(ctx);
 
+        IRepository<Categoria, long> repoCategoria = new CrudRepository<Categoria, long>(ctx);
+        IRepository<Livello, long> repoLivello = new CrudRepository<Livello, long>(ctx);
+        IRepository<Azienda, long> repoAzienda = new CrudRepository<Azienda, long>(ctx);
+        IRepository<Aula, long> repoAula = new CrudRepository<Aula, long>(ctx);
+        IRepository<Finanziatore, long> repoFinanziatore = new CrudRepository<Finanziatore, long>(ctx);
+        IRepository<Progetto, long> repoProgetto = new CrudRepository<Progetto, long>(ctx);
+
         public void ChangeRepo(long name)
         {            
             switch (name)
@@ -24,14 +31,32 @@ namespace ef_scaffold
                 case 1:
                     repoCorsi = new CrudRepository<Corso, long>(ctx);
                     repoEdizioni = new CrudRepository<Edizioni, long>(ctx);
+                    repoCategoria = new CrudRepository<Categoria, long>(ctx);
+                    repoLivello = new CrudRepository<Livello, long>(ctx);
+                    repoAzienda = new CrudRepository<Azienda, long>(ctx);
+                    repoAula = new CrudRepository<Aula, long>(ctx);
+                    repoFinanziatore = new CrudRepository<Finanziatore, long>(ctx);
+                    repoProgetto = new CrudRepository<Progetto, long>(ctx);
                     break;
                 case 2:
                     repoCorsi = new DBCourseRepository();
                     repoEdizioni = new DBEditionRepository();
+                    //repoCategoria
+                    //repoLivello
+                    //repoAzienda
+                    //repoAula
+                    //repoFinanziatore
+                    //repoProgetto
                     break;
                 case 3:
                     repoCorsi = new MemoryCourseRepository();
                     repoEdizioni = new MemoryEditionRepository();
+                    //repoCategoria
+                    //repoLivello
+                    //repoAzienda
+                    //repoAula
+                    //repoFinanziatore
+                    //repoProgetto
                     break;
             };
         }
@@ -85,6 +110,8 @@ namespace ef_scaffold
             return repoEdizioni.GetEditionsByIdCourse(id);
         }
         #endregion
+
+
 
         //#region Utilities
         //public static bool ProjectExist(long id)

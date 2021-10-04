@@ -29,7 +29,7 @@ namespace ef_scaffold.Entities
         public string Ruolo { get; set; }
         public int? IdAzienda { get; set; }
 
-        public virtual Aziendum IdAziendaNavigation { get; set; }
+        public virtual Azienda IdAziendaNavigation { get; set; }
         public virtual ICollection<Competenza> Competenzas { get; set; }
         public virtual ICollection<Iscrizione> Iscriziones { get; set; }
         public virtual ICollection<Lezione> Leziones { get; set; }
